@@ -18,7 +18,7 @@ TARGET = "/output/entry.txt"
 
 
 def main() -> int:
-    # Normalise once, then guard every rule before touching disk.
+    # Normalise once, then enforce every entry rule before touching disk.
     text = ROAST.strip()
     if not text.endswith("."):
         print("FAIL: roast must end with a full stop")
@@ -34,7 +34,7 @@ def main() -> int:
 
     os.makedirs(os.path.dirname(TARGET), exist_ok=True)
     with open(TARGET, "w", encoding="utf-8") as handle:
-        handle.write(text + "\n")
+        handle.write(text)
 
     print(f"OK: wrote {len(text)} characters to {TARGET}")
     return 0
